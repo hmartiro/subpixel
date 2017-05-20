@@ -20,7 +20,7 @@ from six.moves import urllib
 
 parser = argparse.ArgumentParser(description='Download dataset for DCGAN.')
 parser.add_argument('--datasets', metavar='N', type=str, nargs='+',
-                   help='name of dataset to download [celebA, lusn, mnist]')
+                   help='name of dataset to download [celebA, lsun, mnist]')
 
 def download(url, dirpath):
     filename = url.split('/')[-1]
@@ -151,7 +151,8 @@ def download_mnist(dirpath):
         subprocess.call(cmd)
         cmd = ['gzip -d', out_path]
         print('Decompressing ', file_name)
-        subprocess.call(cmd)
+        print(cmd)
+        subprocess.call(' '.join(cmd), shell=True)
 
 def prepare_data_dir(path = './data'):
     if not os.path.exists(path):
